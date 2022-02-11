@@ -99,6 +99,7 @@ func (r *Ring) Unlink(nodeCnt int) *Ring {
 	return r.Link(r.Move(nodeCnt + 1))
 }
 
+// O(n)
 func (r *Ring) Len() int {
 	n := 0
 
