@@ -91,6 +91,27 @@ func (r *Ring) Link(s *Ring) *Ring {
 	return n
 }
 
+// O(n)
+func (r *Ring) Unlink(nodeCnt int) *Ring {
+	if nodeCnt < 0 {
+		return nil
+	}
+	return r.Link(r.Move(nodeCnt + 1))
+}
+
+func (r *Ring) Len() int {
+	n := 0
+
+	if r != nil {
+		n = 1
+
+		for p := r.Next(); p != r; p = p.next {
+			n++
+		}
+	}
+	return n
+}
+
 func PrintRing(r *Ring) {
 	node := r
 

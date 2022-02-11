@@ -1,6 +1,9 @@
 package ring
 
-import "testing"
+import (
+	"fmt"
+	"testing"
+)
 
 func Test(t *testing.T) {
 	r := NewRing()
@@ -13,4 +16,10 @@ func Test(t *testing.T) {
 	r.Link(&Ring{Value: 5})
 
 	PrintRing(r)
+
+	fmt.Println()
+
+	tmpR := r.Unlink(3)
+
+	PrintRing(tmpR)
 }
