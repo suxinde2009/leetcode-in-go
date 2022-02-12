@@ -1,7 +1,6 @@
 package tree
 
 import (
-	"fmt"
 	"leetcode/basic_ds/queue"
 )
 
@@ -15,48 +14,49 @@ func (treeNode *TreeNode) IsNil() bool {
 	return treeNode == nil
 }
 
-func PreOder(tree *TreeNode) {
+func PreOder(tree *TreeNode, visit func(value interface{})) {
 
 	if tree == nil {
 		return
 	}
 
-	fmt.Printf("%v ", tree.Data)
+	visit(tree.Data)
 
-	PreOder(tree.Left)
+	PreOder(tree.Left, visit)
 
-	PreOder(tree.Right)
+	PreOder(tree.Right, visit)
 
 }
 
-func MidOder(tree *TreeNode) {
+func MidOder(tree *TreeNode, visit func(value interface{})) {
 
 	if tree == nil {
 		return
 	}
 
-	MidOder(tree.Left)
+	MidOder(tree.Left, visit)
 
-	fmt.Printf("%v ", tree.Data)
+	visit(tree.Data)
 
-	MidOder(tree.Right)
+	MidOder(tree.Right, visit)
 
 }
 
-func PostOder(tree *TreeNode) {
+func PostOder(tree *TreeNode, visit func(value interface{})) {
 
 	if tree == nil {
 		return
 	}
 
-	PostOder(tree.Left)
+	PostOder(tree.Left, visit)
 
-	PostOder(tree.Right)
+	PostOder(tree.Right, visit)
 
-	fmt.Printf("%v ", tree.Data)
+	visit(tree.Data)
+
 }
 
-func LayerOrder(treeNode *TreeNode) {
+func LayerOrder(treeNode *TreeNode, visit func(value interface{})) {
 
 	if treeNode == nil {
 		return
@@ -68,7 +68,7 @@ func LayerOrder(treeNode *TreeNode) {
 	for queue.Size() > 0 {
 		element, _ := queue.Remove().(*TreeNode)
 
-		fmt.Printf("%v ", element.Data)
+		visit(element.Data)
 
 		if element.Left.IsNil() != true {
 			queue.Add(element.Left)

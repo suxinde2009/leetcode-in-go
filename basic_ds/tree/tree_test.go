@@ -17,18 +17,27 @@ func TestTree(t *testing.T) {
 	tree.Right.Left = &TreeNode{Data: "F"}
 
 	fmt.Println("PreOrder ")
-	PreOder(tree)
+	PreOder(tree, func(value interface{}) {
+		fmt.Printf("%v ", value)
+	})
 	fmt.Println()
 
 	fmt.Println("MidOrder ")
-	MidOder(tree)
+	MidOder(tree, func(value interface{}) {
+		fmt.Printf("%v ", value)
+	})
 	fmt.Println()
 
 	fmt.Println("PostOrder ")
-	PostOder(tree)
+	PostOder(tree, func(value interface{}) {
+		fmt.Printf("%v ", value)
+	})
 	fmt.Println()
 
 	fmt.Println("LayerOrder ")
-	LayerOrder(tree)
+	LayerOrder(tree, func(value interface{}) {
+		fmt.Printf("%v ", value)
+	})
+
 	fmt.Println()
 }
